@@ -7,7 +7,7 @@ const addTodoBtn = document.getElementById('add_item_btn');
 const completedTodosBtn = document.getElementById('completed_todo');
 const progressTodosBtn = document.getElementById('progress_todo');
 const removedTodosBtn = document.getElementById('removed_todo');
-
+const todoStatusText = document.getElementById('todo_status_text');
 
 
 todoForm.addEventListener('submit', function(event) {
@@ -16,11 +16,11 @@ todoForm.addEventListener('submit', function(event) {
 
     if (todoText) {
         var todoEl = createTodoEl();
-        var circleEl = createCircleEl();
+        var completeTodoBtn = createCompleteTodoBtn();
         var todoDescEl = createTodoDescEl();
         var removeTodoBtn = createRemoveTodoBtn();
 
-        todoEl.appendChild(circleEl);
+        todoEl.appendChild(completeTodoBtn);
         todoEl.appendChild(todoDescEl);
         todoEl.appendChild(removeTodoBtn);
         todos.appendChild(todoEl);
@@ -37,10 +37,16 @@ todoForm.addEventListener('submit', function(event) {
                 todoEl.classList.remove(...['default', 'completed']);
                 todoEl.classList.add('removed');
             }
+            if (todoEl.lastChild) {
+                todoEl.style.display = 'flex';
+            }
         });
-        circleEl.addEventListener('click', () => {
+        completeTodoBtn.addEventListener('click', () => {
             todoEl.classList.remove(...['default', 'removed']);
             todoEl.classList.add('completed');
+            if (todoEl.lastChild) {
+                todoEl.style.display = 'flex';
+            }
         });
 
         completedTodosBtn.addEventListener('click', function(event) {
@@ -51,6 +57,7 @@ todoForm.addEventListener('submit', function(event) {
                 todoEl.style.display = 'flex';
             }
             addTodoBtn.parentElement.style.display = 'none';
+            todoStatusText.innerHTML = 'Completed Todos';
         });
 
         progressTodosBtn.addEventListener('click', function(event) {
@@ -61,6 +68,7 @@ todoForm.addEventListener('submit', function(event) {
                 todoEl.style.display = 'flex';
             }
             addTodoBtn.parentElement.style.display = 'flex';
+            todoStatusText.innerHTML = 'Today';
         });
 
         removedTodosBtn.addEventListener('click', function(event) {
@@ -71,6 +79,7 @@ todoForm.addEventListener('submit', function(event) {
                 todoEl.style.display = 'flex';
             }
             addTodoBtn.parentElement.style.display = 'none';
+            todoStatusText.innerHTML = 'Removed Todos';
         });
     } else {
         showInputOrButton();
@@ -78,28 +87,28 @@ todoForm.addEventListener('submit', function(event) {
     }
 
     function createRemoveTodoBtn() {
-        var removeTodoBtn = document.createElement('div');
+        let removeTodoBtn = document.createElement('div');
         removeTodoBtn.id = 'todo_remove_btn';
         removeTodoBtn.classList = 'fa-solid fa-circle-xmark';
         return removeTodoBtn;
     }
 
     function createTodoDescEl() {
-        var todoDescEl = document.createElement('div');
+        let todoDescEl = document.createElement('div');
         todoDescEl.classList = 'todo_description';
         todoDescEl.innerText = todoText;
         return todoDescEl;
     }
 
-    function createCircleEl() {
-        var circleEl = document.createElement('div');
-        circleEl.id = 'todo_complete_btn';
-        circleEl.classList = 'circle';
-        return circleEl;
+    function createCompleteTodoBtn() {
+        let completeTodoBtn = document.createElement('div');
+        completeTodoBtn.id = 'todo_complete_btn';
+        completeTodoBtn.classList = 'circle';
+        return completeTodoBtn;
     }
 
     function createTodoEl() {
-        var todoEl = document.createElement('div');
+        let todoEl = document.createElement('div');
         todoEl.id = 'todo_item';
         todoEl.classList = 'todo_item default';
         return todoEl;
@@ -110,12 +119,3 @@ function showInputOrButton() {
     addTodoBtn.classList.toggle("showInput");
     input.classList.toggle('showInput');
 }
-// function addTodo(todoText) {
-//     todos.insertAdjacentHTML("beforeEnd",
-//         `<div id="todo_item" class="todo_item">
-//             <div class="circle"></div>
-//             <div class="todo_description">${todoText}</div>
-//             <div id="todo_remove_btn" class="fa-solid fa-circle-xmark"></div>
-//          </div>`);
-//     input.value = '';
-// }

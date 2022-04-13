@@ -1,11 +1,9 @@
-const calendar = document.querySelectorAll('.calendar')
-const months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+const day = document.querySelector('.day');
+const month = document.querySelector('.month');
 
-calendar.forEach(calendar => {
-    var date = new Date();
-    var dayElement = calendar.querySelector('.day');
-    var monthElement = calendar.querySelector('.month');
+day.innerText = getDate({ day: 'numeric' });
+month.innerText = getDate({ month: 'short' });
 
-    dayElement.innerText = date.getDate();
-    monthElement.innerText = months[date.getMonth()];
-});
+function getDate(options) {
+    return Intl.DateTimeFormat('en-US', options).format(new Date());
+}

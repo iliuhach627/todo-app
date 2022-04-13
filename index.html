@@ -15,36 +15,36 @@
 </head>
 
 <body>
-    <form id="todo_form">
-        <div class="todo_header">
-            <div class="calendar">
-                <div class="date">
-                    <div class="month"></div>
-                    <div class="day"></div>
-                </div>
-                <div class="today_text">Today</div>
+<form id="todo_form">
+    <div class="todo_header">
+        <div class="calendar">
+            <div class="date">
+                <div class="month"></div>
+                <div class="day"></div>
             </div>
-            <div class="menu">
-                <div class="dropbtn fa-solid fa-ellipsis"></div>
-                <div id="itemsId" class="menu_items">
-                    <div id="completed_todo" class="menu_item">Completed</div>
-                    <div id="progress_todo" class="menu_item">In Progress</div>
-                    <div id="removed_todo" class="menu_item">Removed</div>
-                </div>
+            <div id="todo_status_text" class="today_text">Today</div>
+        </div>
+        <div class="menu">
+            <div class="dropbtn fa-solid fa-ellipsis"></div>
+            <div id="itemsId" class="menu_items">
+                <div id="completed_todo" class="menu_item">Completed</div>
+                <div id="progress_todo" class="menu_item">In Progress</div>
+                <div id="removed_todo" class="menu_item">Removed</div>
             </div>
         </div>
-        <div id="todo_list" class="todo_list"></div>
-        <div class="todo_add_container">
-            <div class="todo_add_item">
-                <label class="plus" for="add_item_btn"></label>
-                <button id="add_item_btn">Create New Item</button>
-                <input id="input" class="input_field" type="text" placeholder="Add new todo" autocomplete="off">
-            </div>
+    </div>
+    <div id="todo_list" class="todo_list"></div>
+    <div class="todo_add_container">
+        <div class="todo_add_item">
+            <label class="plus" for="add_item_btn"></label>
+            <button id="add_item_btn">Create New Item</button>
+            <input id="input" class="input_field" type="text" placeholder="Add new todo" autocomplete="off">
         </div>
-    </form>
+    </div>
+</form>
 
-    <script src="js/date.js"></script>
-    <script src="js/todos.js"></script>
+<script src="js/date.js"></script>
+<script src="js/todos.js"></script>
 </body>
 
 </html>
